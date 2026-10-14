@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
     std::setlocale(LC_NUMERIC, "C");
     QApplication::setApplicationName("roadboard");
     QApplication::setApplicationDisplayName("RoadBoard");
-    QApplication::setApplicationVersion("0.1.0");
+    QApplication::setApplicationVersion(ROADBOARD_VERSION);
     QApplication::setDesktopFileName("io.github.roadboard.RoadBoard");
     QApplication::setQuitOnLastWindowClosed(false);
 

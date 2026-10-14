@@ -1,5 +1,6 @@
 #include "gui/Dialogs.h"
 
+#include <QApplication>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDialog>
@@ -746,7 +747,7 @@ void openPresets(QWidget* parent) { singleton(parent, gPresets); }
 // ====================================================================== about
 void openAbout(QWidget* parent) {
     QMessageBox::about(parent, "About RoadBoard",
-        "<h2>RoadBoard 0.2</h2>"
+        "<h2>RoadBoard " ROADBOARD_VERSION "</h2>"
         "<p>Advanced virtual audio mixing console for Linux.</p>"
         "<p>8 inputs (5 hardware + 3 virtual) · 8 buses (A1–A5 + B1–B3) with a full 8×8 sub-mix matrix · "
         "ROADPAN (Color / Modulation / 3D), compressor, gate, denoiser, Voice Modeler, 6-band EQ on inputs, "
@@ -755,7 +756,9 @@ void openAbout(QWidget* parent) {
         "Application Mixer and request scripting.</p>"
         "<p>Audio engine: PipeWire. Works on every distribution running PipeWire "
         "(PulseAudio / JACK applications included).</p>"
-        "<p>Command line: <code>roadboard --cmd 'Strip(0).Mute=1'</code></p>");
+        "<p>Command line: <code>roadboard --cmd 'Strip(0).Mute=1'</code></p>"
+        "<p>Free software released under the GNU General Public License v3.0 or later.<br>"
+        "<a href='https://github.com/HubDevCode/RoadBoard'>github.com/HubDevCode/RoadBoard</a></p>");
 }
 
 } // namespace road

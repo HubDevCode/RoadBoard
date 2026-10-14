@@ -3,7 +3,7 @@
 # Usage: packaging/appimage/build-appimage.sh   (from the repository root)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-WORK="$ROOT/build-appimage"
+WORK="${WORK:-$ROOT/build-appimage}"
 TOOLS="$WORK/tools"
 mkdir -p "$TOOLS"
 ARCH="$(uname -m)"
@@ -19,6 +19,8 @@ DESTDIR="$WORK/AppDir" cmake --install "$WORK/build"
 
 # PipeWire itself must come from the host (it talks to the running daemon):
 # never bundle libpipewire / libspa.
+# the strip bundled with linuxdeploy cannot handle .relr.dyn sections of recent distributions
+export NO_STRIP=1
 export EXTRA_QT_PLUGINS="svg;"
 export QMAKE="${QMAKE:-$(command -v qmake6 || command -v qmake)}"
 cd "$WORK"

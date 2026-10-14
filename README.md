@@ -13,6 +13,7 @@
   <img src="https://img.shields.io/badge/audio-PipeWire-blueviolet" alt="PipeWire">
   <img src="https://img.shields.io/badge/UI-Qt%206-41cd52" alt="Qt 6">
   <img src="https://img.shields.io/badge/language-C%2B%2B20-00599C" alt="C++20">
+  <img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="GPL-3.0">
 </p>
 
 ![RoadBoard main window](docs/screenshot-main.png)
@@ -29,6 +30,7 @@
 - [Screenshots](#screenshots)
 - [Configuration files](#configuration-files)
 - [Notes and limitations](#notes-and-limitations)
+- [License](#license)
 
 ## Why RoadBoard
 
@@ -135,11 +137,16 @@ cmake --build build
 sudo cmake --install build        # or install system-wide
 ```
 
+### Downloads
+
+Ready-made builds (AppImage, Arch package, binary archive) are attached to each [release](https://github.com/HubDevCode/RoadBoard/releases).
+The AppImage runs on any distribution with PipeWire: `chmod +x RoadBoard-*.AppImage && ./RoadBoard-*.AppImage`.
+
 ### Packages
 
 | Format | How |
 |---|---|
-| AppImage (any distribution) | `packaging/appimage/build-appimage.sh` |
+| AppImage (any distribution) | `packaging/appimage/build-in-docker.sh` (portable build in Ubuntu 22.04) or `packaging/appimage/build-appimage.sh` (host build) |
 | Flatpak | `flatpak-builder --user --install build-flatpak packaging/flatpak/io.github.roadboard.RoadBoard.yml` |
 | Arch Linux | `cd packaging/arch && makepkg -si` |
 | .deb / .rpm / .tar.gz | `cd build && cpack` |
@@ -197,3 +204,9 @@ Everything lives in `~/.config/roadboard/`:
 - **RoadLink** uses, by default, the packet format of existing network-audio apps, so RoadBoard can exchange audio with phones and other computers. A RoadBoard-only format can be selected in the RoadLink window.
 - Tools that automatically move audio streams (per-application routers or equalisers) can fight with the Application Mixer. Exclude the applications you route with RoadBoard from them.
 - Not implemented yet: per-application level meters, HID / gamepad triggers for macro buttons, screen sharing over the network.
+
+## License
+
+RoadBoard is free software: you can redistribute it and/or modify it under the terms of the
+**GNU General Public License** as published by the Free Software Foundation, either version 3
+of the License, or (at your option) any later version. See [LICENSE](LICENSE).

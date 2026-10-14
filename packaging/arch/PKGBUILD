@@ -1,10 +1,10 @@
 # Maintainer: you
 pkgname=roadboard
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
 pkgdesc="Virtual audio mixing console for PipeWire: 8 inputs, 8 buses, virtual devices, FX, application mixer, recorder, RoadLink, MIDI, macro buttons"
 arch=('x86_64' 'aarch64')
-license=('custom')
+license=('GPL-3.0-or-later')
 depends=('qt6-base' 'qt6-svg' 'pipewire' 'wireplumber' 'libsndfile' 'libsamplerate' 'alsa-lib')
 makedepends=('cmake' 'ninja')
 optdepends=('ffmpeg: play m4a/mp4/mov/avi/wma files on the cassette deck'
