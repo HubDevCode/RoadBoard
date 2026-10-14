@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=RoadBoard
+GenericName=Virtual Audio Mixer
+Comment=Virtual audio mixing console with virtual devices, RoadLink, recorder and macro buttons
+Exec=roadboard
+Icon=io.github.roadboard.RoadBoard
+Terminal=false
+Categories=AudioVideo;Audio;Mixer;
+Keywords=mixer;pipewire;virtual;audio;roadlink;streaming;
+StartupWMClass=roadboard

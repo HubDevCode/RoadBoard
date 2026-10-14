@@ -1,0 +1,39 @@
+# flatpak-builder --user --install --force-clean build-flatpak packaging/flatpak/io.github.roadboard.RoadBoard.yml
+app-id: io.github.roadboard.RoadBoard
+runtime: org.kde.Platform
+runtime-version: '6.8'
+sdk: org.kde.Sdk
+command: roadboard
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=network                      # RoadLink
+  - --filesystem=xdg-run/pipewire-0      # native PipeWire access (devices, links)
+  - --socket=pulseaudio
+  - --device=all                         # ALSA sequencer for MIDI controllers
+  - --filesystem=xdg-music               # recorder default folder
+  - --filesystem=home:ro                 # cassette player files
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --talk-name=org.freedesktop.Notifications
+modules:
+  - name: libsndfile
+    buildsystem: cmake-ninja
+    config-opts: [-DBUILD_TESTING=OFF, -DBUILD_PROGRAMS=OFF, -DBUILD_EXAMPLES=OFF, -DENABLE_MPEG=ON]
+    sources:
+      - type: git
+        url: https://github.com/libsndfile/libsndfile.git
+        tag: 1.2.2
+  - name: libsamplerate
+    buildsystem: cmake-ninja
+    config-opts: [-DBUILD_TESTING=OFF, -DLIBSAMPLERATE_EXAMPLES=OFF]
+    sources:
+      - type: git
+        url: https://github.com/libsndfile/libsamplerate.git
+        tag: 0.2.2
+  - name: roadboard
+    buildsystem: cmake-ninja
+    config-opts: [-DCMAKE_BUILD_TYPE=Release]
+    sources:
+      - type: dir
+        path: ../..

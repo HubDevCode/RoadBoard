@@ -1,0 +1,9 @@
+# build output
+/build/
+/build-*/
+/.flatpak-builder/
+*.AppImage
+# editors
+.vscode/
+.idea/
+*.swp

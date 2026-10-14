@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.roadboard.RoadBoard</id>
+  <name>RoadBoard</name>
+  <summary>Virtual audio mixing console for PipeWire</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <description>
+    <p>RoadBoard is a virtual audio mixer: 3 hardware inputs, 2 virtual inputs, 5 multichannel buses
+    (A1 A2 A3 to devices, B1 B2 as virtual microphones), RoadPan voice effects, compressor, gate,
+    limiters, karaoke, 6x8 parametric EQ, integrated recorder, RoadLink network audio, MIDI mapping and
+    programmable macro buttons.</p>
+  </description>
+  <launchable type="desktop-id">io.github.roadboard.RoadBoard.desktop</launchable>
+  <categories><category>AudioVideo</category><category>Audio</category></categories>
+</component>
