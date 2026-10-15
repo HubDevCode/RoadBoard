@@ -414,7 +414,13 @@ bool TapeDeck::openRecordFiles(int channels, int rate, std::string* err) {
     case 2: fmt = SF_FORMAT_AIFF; break;
     case 4: fmt = SF_FORMAT_FLAC; break;
     case 5: fmt = SF_FORMAT_OGG | SF_FORMAT_VORBIS; break;
+#ifdef SF_FORMAT_MPEG
     case 100: fmt = SF_FORMAT_MPEG | SF_FORMAT_MPEG_LAYER_III; channels = std::min(channels, 2); break;
+#else
+    case 100:   // libsndfile < 1.1 cannot write MP3
+        if (err) *err = "MP3 recording needs libsndfile 1.1 or newer";
+        return false;
+#endif
     default: fmt = SF_FORMAT_WAV; break;
     }
     if (type != 5 && type != 100) {
@@ -434,8 +440,10 @@ bool TapeDeck::openRecordFiles(int channels, int rate, std::string* err) {
         SNDFILE* f = sf_open(path.c_str(), SFM_WRITE, &info);
         if (!f) return nullptr;
         if (type == 100) {
+#ifdef SF_FORMAT_MPEG
             int mode = SF_BITRATE_MODE_CONSTANT;
             sf_command(f, SFC_SET_BITRATE_MODE, &mode, sizeof mode);
+#endif
             double level = std::clamp((320.0 - P.rec.kbps->get()) / (320.0 - 32.0), 0.0, 1.0);
             sf_command(f, SFC_SET_COMPRESSION_LEVEL, &level, sizeof level);
         }

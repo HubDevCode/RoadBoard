@@ -21,7 +21,9 @@ DESTDIR="$WORK/AppDir" cmake --install "$WORK/build"
 # never bundle libpipewire / libspa.
 # the strip bundled with linuxdeploy cannot handle .relr.dyn sections of recent distributions
 export NO_STRIP=1
-export EXTRA_QT_PLUGINS="svg;"
+export EXTRA_QT_PLUGINS="svg;wayland-shell-integration;wayland-decoration-client;wayland-graphics-integration-client"
+# native Wayland + X11, offscreen for headless use
+export EXTRA_PLATFORM_PLUGINS="libqwayland-generic.so;libqoffscreen.so"
 export QMAKE="${QMAKE:-$(command -v qmake6 || command -v qmake)}"
 cd "$WORK"
 APPIMAGE_EXTRACT_AND_RUN=1 "$TOOLS/linuxdeploy.AppImage" --appdir AppDir \
